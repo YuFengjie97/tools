@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { resolve } from 'path'
+import { isDirectory } from './utils'
 
 function isExcludeStr(str: string): boolean {
   return ['汉化', '翻译', '工房', '漢化', '掃圖', '翻訳', '翻譯', '中国語', '中文', '整合'].some(item => str.includes(item))
@@ -25,10 +26,6 @@ function getCategoryDirName(fileName: string): string {
   }
 
   return 'A未分类'
-}
-
-function isDirectory(path: string) {
-  return fs.statSync(path).isDirectory()
 }
 
 let num = 1
@@ -67,8 +64,20 @@ function clearEmptyDir(input: string) {
     }
   })
 }
+const baseDir = process.argv.slice(2)[0]
+if (!baseDir) {
+  console.log('需要提供目录路径')
+} else {
+  try {
+    const isDir = isDirectory(baseDir)
+    if (isDir) {
+      categoryFiles(baseDir, baseDir)
+      clearEmptyDir(baseDir)
+    } else {
+      console.log('目录路径错误');
+    }
+  } catch (e) {
+    console.log('目录路径错误');
+  }
+}
 
-const baseDir = 'E:/download_idm/sum/comic'
-
-categoryFiles(baseDir, baseDir)
-clearEmptyDir(baseDir)
