@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "rename": "npx tsx ./src/rename.ts",
-    "wnacgZipCategory": "npx tsx ./src/wnacgZipCategory.ts"
   },
   "keywords": [],
   "author": "",

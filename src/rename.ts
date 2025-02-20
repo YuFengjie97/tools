@@ -2,13 +2,11 @@ import { isDirectory } from "./utils";
 import fs from 'fs'
 import { resolve } from 'path'
 
-const args = process.argv.slice(2)
-const [dir, matchRule, renameRule, start] = args
+const dir = "E:/game/H/RJ365188/RJ365188\Save\CustomImgData"
+const matchReg = /.*/gim
+const renameRule = ""
+const start = 11
 
-console.log([dir, matchRule, renameRule, start]);
-
-const matchReg = matchRule ? new RegExp(matchRule, 'gim') : /.*/
-console.log(matchReg);
 
 
 try {

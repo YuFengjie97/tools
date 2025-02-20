@@ -64,20 +64,8 @@ function clearEmptyDir(input: string) {
     }
   })
 }
-const baseDir = process.argv.slice(2)[0]
-if (!baseDir) {
-  console.log('需要提供目录路径')
-} else {
-  try {
-    const isDir = isDirectory(baseDir)
-    if (isDir) {
-      categoryFiles(baseDir, baseDir)
-      clearEmptyDir(baseDir)
-    } else {
-      console.log('目录路径错误');
-    }
-  } catch (e) {
-    console.log('目录路径错误');
-  }
-}
+
+const baseDir = "E:/download_idm/sum/comic"
+categoryFiles(baseDir, baseDir)
+clearEmptyDir(baseDir)
 
