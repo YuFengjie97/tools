@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { resolve } from 'path'
-import { isDirectory } from './utils'
+import { isDirectory, clearEmptyDir } from './utils'
 
 function isExcludeStr(str: string): boolean {
   return ['汉化', '翻译', '工房', '漢化', '掃圖', '翻訳', '翻譯', '中国語', '中文', '整合'].some(item => str.includes(item))
@@ -52,18 +52,7 @@ function categoryFiles(input: string, output: string) {
   })
 }
 
-function clearEmptyDir(input: string) {
-  const fileNames = fs.readdirSync(input)
-  fileNames.forEach((fileName) => {
-    const path = resolve(input, fileName)
-    if (isDirectory(path)) {
-      const isEmpty = fs.readdirSync(path).length === 0
-      if (isEmpty) {
-        fs.rmdirSync(path)
-      }
-    }
-  })
-}
+
 
 const baseDir = "E:/download_idm/sum/comic"
 categoryFiles(baseDir, baseDir)
